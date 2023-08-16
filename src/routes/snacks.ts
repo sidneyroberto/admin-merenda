@@ -13,7 +13,7 @@ const snackCtrl = new SnackController()
 const loginCtrl = new LoginController()
 
 const PAGE = 1
-const PER_PAGE = 10
+const PER_PAGE = 9
 
 snacksRouter.post('/thumb/upload', loginCtrl.verifyToken, async (req, res) => {
   const thumb = req.files['thumb'] as UploadedFile
@@ -33,6 +33,12 @@ snacksRouter.post('/new_snack', loginCtrl.verifyToken, async (req, res) => {
   if (errorMessages.length === 0) {
     const { title, description } = req.body
     const snack = new SnackModel({ title, description })
+    try {
+      const refName = moment(snack.offerDate).format('YYYY_MM_DD')
+      console.log(`Trying to retrieve thumb from ${refName}`)
+      const snackURL = await getDownloadURL(ref(storage, refName))
+      snack.thumbURL = snackURL
+    } catch (err) {}
     await snackCtrl.save(snack)
     return res.render('new_snack', {
       successMessage: 'Merenda do dia salva!',
@@ -48,11 +54,5 @@ snacksRouter.get('/new_snack', loginCtrl.verifyToken, (req, res) =>
 
 snacksRouter.get('/', loginCtrl.verifyToken, async (req, res) => {
   const snacks = await snackCtrl.findLastSnacks(PAGE, PER_PAGE)
-  const thumbUrls: string[] = []
-  for (const snack of snacks) {
-    const refName = moment(snack.offerDate).format('YYYY_MM_DD')
-    const snackURL = await getDownloadURL(ref(storage, refName))
-    thumbUrls.push(snackURL)
-  }
-  res.render('snacks', { snacks, thumbUrls })
+  res.render('snacks', { snacks })
 })

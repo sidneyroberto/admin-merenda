@@ -5,6 +5,7 @@ export interface Snack {
   offerDate: Date
   evaluationScore: number
   description: string
+  thumbURL: string
 }
 
 const schema = new Schema<Snack>({
@@ -12,6 +13,7 @@ const schema = new Schema<Snack>({
   offerDate: { type: Date, default: new Date() },
   evaluationScore: { type: Number, default: 0 },
   description: { type: String, required: true },
+  thumbURL: { type: String },
 })
 
 export const SnackModel = model('Snack', schema)

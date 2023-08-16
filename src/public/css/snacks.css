@@ -36,6 +36,7 @@
   background-color: #2f9e41;
   color: white;
   padding: 10px;
+  cursor: pointer;
 }
 
 .button {
@@ -46,6 +47,7 @@
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .success-message {

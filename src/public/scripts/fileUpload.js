@@ -17,3 +17,17 @@ FilePond.create(document.querySelector('#thumb'), {
   labelTapToRetry: 'Clique para tentar novamente',
   labelTapToUndo: 'Clique para refazer',
 })
+
+document.addEventListener('FilePond:addfilestart', (e) => {
+  const saveButton = document.querySelector('#save-button')
+  saveButton.disabled = true
+  console.log('Save button disabled')
+})
+
+document.addEventListener('FilePond:processfileprogress', (e) => {
+  const saveButton = document.querySelector('#save-button')
+  if (e.detail.progress === 1) {
+    saveButton.disabled = false
+    console.log('Save button enabled')
+  }
+})

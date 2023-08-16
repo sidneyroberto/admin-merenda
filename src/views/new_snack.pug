@@ -12,7 +12,7 @@ block content
     input(type='file', id='thumb', name='thumb', class='filepond', accept='image/png, image/jpeg')
     input(type='text', name='title', placeholder='Título', required)
     textarea(name='description', placeholder='Descrição', required)
-    input(type='submit', value='Salvar')
+    input#save-button(type='submit', value='Salvar')
 
   if successMessage
     span.success-message= successMessage

@@ -10,7 +10,11 @@ export class SnackController {
         {
           _id: snackOfTheDay._id,
         },
-        { title: snack.title, description: snack.description }
+        {
+          title: snack.title,
+          description: snack.description,
+          thumbURL: snack.thumbURL,
+        }
       )
 
       return updatedSnack

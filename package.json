@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "create-user": "ts-node src/createUser.ts",
+    "populate": "ts-node src/populateSnacks.ts",
     "build": "tsc"
   },
   "dependencies": {
