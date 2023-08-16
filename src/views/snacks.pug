@@ -1,0 +1,19 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/css/snacks.css')
+
+block content
+  if snacks && snacks.length > 0
+    h1.title Últimas merendas
+
+    #snacks-area
+      each snack, index in snacks
+        .snack-card
+          img.snack-thumb(src=thumbUrls[index])
+          span.snack-title= snack.title
+          span.snack-date= new Date(snack.offerDate).getDate() + '/' + (Number(new Date(snack.offerDate).getMonth()) + 1) + '/' + new Date(snack.offerDate).getFullYear()
+  else 
+    h1.title Nenhuma merenda cadastrada ainda
+
+  a.button(href='/snacks/new_snack') Nova merenda

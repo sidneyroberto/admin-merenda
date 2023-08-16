@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: 'logo';
+  src: url(../fonts/Borel-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+#container {
+  padding: 20px;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #2f9e41;
+}
+
+#logo {
+  width: 64px;
+  margin-right: 20px;
+}
+
+#header-title {
+  color: white;
+  font-family: 'logo';
+  text-shadow: 2px 2px #333;
+  padding-top: 20px;
+  margin: 0;
+}
+
+#logout-button {
+  text-decoration: none;
+  margin-left: auto;
+}
+
+#logout-button img {
+  width: 32px;
+  filter: invert(1);
+}
+
