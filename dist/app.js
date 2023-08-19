@@ -17,6 +17,7 @@ const api_1 = require("./routes/api");
 exports.app = (0, express_1.default)();
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
+exports.app.engine('pug', require('pug').__express);
 exports.app.set('views', (0, path_1.join)(__dirname, 'views'));
 exports.app.set('view engine', 'pug');
 exports.app.use(express_1.default.static((0, path_1.join)(__dirname, 'public')));
