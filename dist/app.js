@@ -15,6 +15,7 @@ const snacks_1 = require("./routes/snacks");
 const api_1 = require("./routes/api");
 (0, db_1.connectToMongoDB)();
 exports.app = (0, express_1.default)();
+exports.app.enable('trust proxy');
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
 exports.app.engine('pug', require('pug').__express);

@@ -12,6 +12,7 @@ import { apiRouter } from './routes/api'
 connectToMongoDB()
 
 export const app = express()
+app.enable('trust proxy')
 app.use(logger('dev'))
 app.use(fileUpload())
 app.engine('pug', require('pug').__express)
