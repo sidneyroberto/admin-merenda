@@ -17,7 +17,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, maxAge: 1000 * 60 * 60 },
+    cookie: { maxAge: 1000 * 60 * 60 },
   })
 )
 app.use(logger('dev'))

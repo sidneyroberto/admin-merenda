@@ -19,7 +19,7 @@ exports.app.use((0, express_session_1.default)({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, maxAge: 1000 * 60 * 60 },
+    cookie: { maxAge: 1000 * 60 * 60 },
 }));
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
