@@ -8,6 +8,7 @@ import { join } from 'path'
 import { viewsRouter } from './routes/views'
 import { snacksRouter } from './routes/snacks'
 import { apiRouter } from './routes/api'
+import MongoStore from 'connect-mongo'
 
 connectToMongoDB()
 
@@ -18,6 +19,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 },
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 )
 app.use(logger('dev'))

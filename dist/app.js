@@ -13,6 +13,7 @@ const path_1 = require("path");
 const views_1 = require("./routes/views");
 const snacks_1 = require("./routes/snacks");
 const api_1 = require("./routes/api");
+const connect_mongo_1 = __importDefault(require("connect-mongo"));
 (0, db_1.connectToMongoDB)();
 exports.app = (0, express_1.default)();
 exports.app.use((0, express_session_1.default)({
@@ -20,6 +21,7 @@ exports.app.use((0, express_session_1.default)({
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 },
+    store: connect_mongo_1.default.create({ mongoUrl: process.env.DB_URL }),
 }));
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
