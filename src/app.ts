@@ -7,6 +7,7 @@ import { connectToMongoDB } from './config/db'
 import { join } from 'path'
 import { viewsRouter } from './routes/views'
 import { snacksRouter } from './routes/snacks'
+import { apiRouter } from './routes/api'
 
 connectToMongoDB()
 
@@ -30,4 +31,5 @@ app.use((req, res, next) => {
 })
 
 app.use('/snacks', snacksRouter)
+app.use('/api', apiRouter)
 app.use('/', viewsRouter)

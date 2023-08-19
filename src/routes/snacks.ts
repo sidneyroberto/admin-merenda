@@ -3,7 +3,7 @@ import { UploadedFile } from 'express-fileupload'
 import moment from 'moment'
 
 import { SnackController } from '../controllers/SnackController'
-import { Snack, SnackModel, validateSnackInputs } from '../models/SnackModel'
+import { SnackModel, validateSnackInputs } from '../models/SnackModel'
 import LoginController from '../controllers/LoginController'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../config/firebase'
@@ -67,20 +67,4 @@ snacksRouter.get('/:page', loginCtrl.verifyToken, async (req, res) => {
     page,
     perPage: PER_PAGE,
   })
-})
-
-snacksRouter.post('/evaluate/:id/:score', async (req, res) => {
-  const score = Number(req.params.score)
-  if (!isNaN(score) && score >= 1 && score <= 5) {
-    const id = req.params.id
-    await snackCtrl.updateScore(id, score)
-    return res.status(200).json({ message: 'Avaliação salva' })
-  }
-
-  return res.status(400).json({ message: 'Nota inválida' })
-})
-
-snacksRouter.get('/today', async (req, res) => {
-  const snack = await snackCtrl.findSnackOfTheDay()
-  return res.status(200).json({ snack })
 })
