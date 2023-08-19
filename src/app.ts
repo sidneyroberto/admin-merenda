@@ -12,7 +12,6 @@ import { apiRouter } from './routes/api'
 connectToMongoDB()
 
 export const app = express()
-app.enable('trust proxy')
 app.use(logger('dev'))
 app.use(fileUpload())
 app.engine('pug', require('pug').__express)
@@ -25,6 +24,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: true, sameSite: 'none', maxAge: 7 * 24 * 60 * 60 * 1000 },
   })
 )
 app.use((req, res, next) => {
