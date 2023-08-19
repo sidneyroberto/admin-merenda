@@ -14,5 +14,5 @@
     },
     "types": ["node"]
   },
-  "include": ["./src/**/*", "SessionData.d.ts"]
+  "include": ["./src/**/*"]
 }

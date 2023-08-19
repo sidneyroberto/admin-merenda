@@ -1,0 +1,21 @@
+doctype html
+
+html(lang='pt-BR')
+
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/css/styles.css')
+    title Ai, que fome!
+    block styles
+
+  body
+    #header 
+      img#logo(src='/img/logo.png', alt="Logo do Ai que fome")
+      h1#header-title Admin - Ai que fome!
+      if session.token
+        a#logout-button(href='/logout')
+          img(src='/img/logout.png', alt='Fazer logout')
+    #container
+      block content

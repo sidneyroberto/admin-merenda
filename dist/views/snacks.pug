@@ -1,0 +1,28 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/css/snacks.css')
+
+block content
+  if snacks && snacks.length > 0
+    h1.title Últimas merendas
+
+    #snacks-area
+      each snack in snacks
+        .snack-card
+          a.snack-link(href=`/snacks/details/${snack._id}?page=${page}`)
+            img.snack-thumb(src=snack.thumbURL ? snack.thumbURL : '/img/noimage.png')
+          a.snack-link(href=`/snacks/details/${snack._id}?page=${page}`)
+            span.snack-title= snack.title
+          span.snack-date= new Date(snack.offerDate).getDate() + '/' + (Number(new Date(snack.offerDate).getMonth()) + 1) + '/' + new Date(snack.offerDate).getFullYear()
+  
+    #snacks-navigation 
+      if page > 1
+        a.nav-button(href=`/snacks/${page - 1}`) Anterior
+      span#current-page=`Página ${page} de ${totalPages}`
+      if page < totalPages
+        a.nav-button(href=`/snacks/${page + 1}`) Próxima
+  else 
+    h1.title Nenhuma merenda cadastrada ainda
+
+  a.button(href='/snacks/new_snack') Nova merenda

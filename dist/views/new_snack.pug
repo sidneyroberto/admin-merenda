@@ -1,0 +1,32 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/css/snacks.css')
+  link(rel='stylesheet', href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css')
+  link(rel='stylesheet', href='https://unpkg.com/filepond/dist/filepond.min.css')
+
+block content
+  h1.titulo Nova merenda
+
+  form(action='/snacks/new_snack', method='post', enctype='multipart/form-data')
+    input(type='file', id='thumb', name='thumb', class='filepond', accept='image/png, image/jpeg')
+    input(type='text', name='title', placeholder='Título', required)
+    textarea(name='description', placeholder='Descrição', required)
+    input#save-button(type='submit', value='Salvar')
+
+  if successMessage
+    span.success-message= successMessage
+  
+  if errorMessages && errorMessages.length > 0
+    each error in errorMessages 
+      span.error-message= error
+
+  a.button(href='/snacks/1') Voltar
+
+  script(src='https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js')
+  script(src='https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js')  
+  script(src='https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js') 
+  script(src='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js') 
+  script(src='https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js') 
+  script(src='https://unpkg.com/filepond/dist/filepond.min.js')
+  script(src='/scripts/fileUpload.js') 

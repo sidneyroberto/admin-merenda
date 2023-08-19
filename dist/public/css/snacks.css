@@ -1,0 +1,152 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#container form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+#container input,
+#container textarea {
+  margin-bottom: 10px;
+  font-family: 'regular';
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+
+#container input[type='text'] {
+  height: 35px;
+  text-align: center;
+}
+
+#container textarea {
+  height: 100px;
+  padding: 5px;
+}
+
+#container input[type='submit'] {
+  border: none;
+  font-family: 'bold';
+  background-color: #2f9e41;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button {
+  text-decoration: none;
+  border: none;
+  font-family: 'bold';
+  background-color: #2f9e41;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.success-message {
+  font-family: 'bold';
+  color: #2f9e41;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-family: 'bold';
+  color: #cd191e;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: 'bold';
+}
+
+#snacks-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.snack-card {
+  width: 23%;
+  margin: 0 5px 10px 5px;
+  border-radius: 20px;
+  background: #f2f2f2;
+  box-shadow: 20px 20px 60px #cecece,
+    -20px -20px 60px #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.snack-thumb {
+  width: 80%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.snack-title {
+  font-family: 'bold';
+  margin-bottom: 5px;
+}
+
+.snack-date {
+  font-family: 'regular';
+}
+
+.snack-link {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.snack-link:hover {
+  color: #555;
+}
+
+#snacks-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px 0;
+}
+
+.nav-button {
+  background-color: #2f9e41;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-family: 'bold';
+}
+
+#current-page {
+  font-family: 'regular';
+}
+
+#details-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#details-card h1 {
+  font-family: 'bold';
+}
+
+#details-card span {
+  font-family: 'regular';
+  margin-bottom: 30px;
+}
+

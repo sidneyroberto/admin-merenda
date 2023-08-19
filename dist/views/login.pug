@@ -1,0 +1,14 @@
+extends layout
+
+block styles
+    link(rel='stylesheet', href='/css/login.css')
+
+block content
+    #login-container
+        form(action='/login', method='post')
+            input(type='email', name='email', placeholder='E-mail', required)
+            input(type='password', name='password', placeholder='Senha', required)
+            input(type='submit', value='Login')
+        
+        if message
+            span#error-message= message
