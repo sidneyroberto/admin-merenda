@@ -26,7 +26,7 @@ exports.app.use((0, express_session_1.default)({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, sameSite: 'none', maxAge: 7 * 24 * 60 * 60 * 1000 },
+    cookie: { maxAge: 1000 * 60 * 60 },
 }));
 exports.app.use((req, res, next) => {
     res.locals.session = req.session;
