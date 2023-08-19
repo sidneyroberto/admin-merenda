@@ -12,6 +12,14 @@ import { apiRouter } from './routes/api'
 connectToMongoDB()
 
 export const app = express()
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, maxAge: 1000 * 60 * 60 },
+  })
+)
 app.use(logger('dev'))
 app.use(fileUpload())
 app.engine('pug', require('pug').__express)
@@ -19,14 +27,6 @@ app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.use(express.static(join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 },
-  })
-)
 app.use((req, res, next) => {
   res.locals.session = req.session
   next()

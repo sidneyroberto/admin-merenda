@@ -15,6 +15,12 @@ const snacks_1 = require("./routes/snacks");
 const api_1 = require("./routes/api");
 (0, db_1.connectToMongoDB)();
 exports.app = (0, express_1.default)();
+exports.app.use((0, express_session_1.default)({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, maxAge: 1000 * 60 * 60 },
+}));
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
 exports.app.engine('pug', require('pug').__express);
@@ -22,12 +28,6 @@ exports.app.set('views', (0, path_1.join)(__dirname, 'views'));
 exports.app.set('view engine', 'pug');
 exports.app.use(express_1.default.static((0, path_1.join)(__dirname, 'public')));
 exports.app.use(express_1.default.urlencoded({ extended: false }));
-exports.app.use((0, express_session_1.default)({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 },
-}));
 exports.app.use((req, res, next) => {
     res.locals.session = req.session;
     next();
