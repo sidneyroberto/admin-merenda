@@ -4,7 +4,7 @@ import LoginController from '../controllers/LoginController'
 export const viewsRouter = Router()
 const loginCtrl = new LoginController()
 
-viewsRouter.get('/', (req, res) => res.redirect('/snacks'))
+viewsRouter.get('/', (req, res) => res.redirect('/snacks/1'))
 
 viewsRouter.get('/login', loginCtrl.verifyUserLoggedIn, (req, res) =>
   res.render('login')
@@ -17,7 +17,7 @@ viewsRouter.post('/login', async (req, res) => {
   if (response.loggedIn) {
     req.session.token = response.token
     req.session.user = response.user
-    return res.redirect('/snacks')
+    return res.redirect('/snacks/1')
   }
 
   res.render('login', { message: response.message })

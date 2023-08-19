@@ -1,0 +1,12 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/css/snacks.css')
+
+block content
+  #details-card
+    img.snack-thumb(src=snack.thumbURL ? snack.thumbURL : '/img/noimage.png')
+    h1= snack.title
+    span= snack.description
+
+  a.button(href=`/snacks/${page}`) Voltar

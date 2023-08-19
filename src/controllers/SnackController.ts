@@ -4,7 +4,6 @@ import { Snack, SnackModel } from '../models/SnackModel'
 export class SnackController {
   async save(snack: Snack) {
     const snackOfTheDay = await this.findSnackOfTheDay()
-    console.log(snackOfTheDay)
     if (snackOfTheDay) {
       const updatedSnack = await SnackModel.findOneAndReplace(
         {
@@ -22,6 +21,15 @@ export class SnackController {
 
     const savedSnack = await SnackModel.create(snack)
     return savedSnack
+  }
+
+  async updateScore(id: string, score: number) {
+    const updatedSnack = await SnackModel.findOneAndUpdate<Snack>(
+      { id },
+      { evaluationScore: score }
+    )
+
+    return updatedSnack
   }
 
   async findSnackOfTheDay() {
@@ -43,5 +51,15 @@ export class SnackController {
       .exec()
 
     return snacks
+  }
+
+  async findSnacksAmount() {
+    const amount = await SnackModel.count({})
+    return amount
+  }
+
+  async findById(id: string) {
+    const snack = await SnackModel.findById(id)
+    return snack
   }
 }
