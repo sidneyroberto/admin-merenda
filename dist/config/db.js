@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectToMongoDB = void 0;
 const mongoose_1 = require("mongoose");
 const connectToMongoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, mongoose_1.connect)(`${process.env.DB_URL}`);
+    yield (0, mongoose_1.connect)(`${process.env.DB_URL}`, { maxPoolSize: 10 });
 });
 exports.connectToMongoDB = connectToMongoDB;
 mongoose_1.connection.on('connecting', () => console.log('Opening connection to database...'));

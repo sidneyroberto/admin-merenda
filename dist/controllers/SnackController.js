@@ -35,7 +35,10 @@ class SnackController {
     }
     updateScore(id, score) {
         return __awaiter(this, void 0, void 0, function* () {
-            const updatedSnack = yield SnackModel_1.SnackModel.findOneAndUpdate({ id }, { evaluationScore: score });
+            const snack = yield this.findById(id);
+            const divisor = snack.evaluationScore === 0 ? 1 : 2;
+            snack.evaluationScore = (snack.evaluationScore + score) / divisor;
+            const updatedSnack = yield SnackModel_1.SnackModel.updateOne({ _id: id }, snack);
             return updatedSnack;
         });
     }

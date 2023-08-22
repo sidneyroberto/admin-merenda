@@ -24,11 +24,10 @@ export class SnackController {
   }
 
   async updateScore(id: string, score: number) {
-    const updatedSnack = await SnackModel.findOneAndUpdate<Snack>(
-      { id },
-      { evaluationScore: score }
-    )
-
+    const snack = await this.findById(id)
+    const divisor = snack.evaluationScore === 0 ? 1 : 2
+    snack.evaluationScore = (snack.evaluationScore + score) / divisor
+    const updatedSnack = await SnackModel.updateOne({ _id: id }, snack)
     return updatedSnack
   }
 

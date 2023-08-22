@@ -1,7 +1,7 @@
 import { connect, connection } from 'mongoose'
 
 export const connectToMongoDB = async () => {
-  await connect(`${process.env.DB_URL}`)
+  await connect(`${process.env.DB_URL}`, { maxPoolSize: 10 })
 }
 
 connection.on('connecting', () =>
