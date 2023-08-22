@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const express_session_1 = __importDefault(require("express-session"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
+const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./config/db");
 const path_1 = require("path");
 const views_1 = require("./routes/views");
@@ -23,6 +24,7 @@ exports.app.use((0, express_session_1.default)({
     cookie: { maxAge: 1000 * 60 * 60 },
     store: connect_mongo_1.default.create({ mongoUrl: process.env.DB_URL }),
 }));
+exports.app.use((0, cors_1.default)());
 exports.app.use((0, morgan_1.default)('dev'));
 exports.app.use((0, express_fileupload_1.default)());
 exports.app.engine('pug', require('pug').__express);

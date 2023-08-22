@@ -2,6 +2,7 @@ import express from 'express'
 import logger from 'morgan'
 import session from 'express-session'
 import fileUpload from 'express-fileupload'
+import cors from 'cors'
 
 import { connectToMongoDB } from './config/db'
 import { join } from 'path'
@@ -22,6 +23,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 )
+app.use(cors())
 app.use(logger('dev'))
 app.use(fileUpload())
 app.engine('pug', require('pug').__express)
