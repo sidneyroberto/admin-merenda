@@ -32,6 +32,7 @@ exports.app.set('views', (0, path_1.join)(__dirname, 'views'));
 exports.app.set('view engine', 'pug');
 exports.app.use(express_1.default.static((0, path_1.join)(__dirname, 'public')));
 exports.app.use(express_1.default.urlencoded({ extended: false }));
+exports.app.use(express_1.default.json());
 exports.app.use((req, res, next) => {
     res.locals.session = req.session;
     next();

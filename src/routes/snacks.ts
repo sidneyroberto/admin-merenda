@@ -7,6 +7,7 @@ import { SnackModel, validateSnackInputs } from '../models/SnackModel'
 import LoginController from '../controllers/LoginController'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../config/firebase'
+import { sendPushNotificationToAll } from '../messages/PushNotificationMessages'
 
 export const snacksRouter = Router()
 const snackCtrl = new SnackController()
@@ -39,6 +40,9 @@ snacksRouter.post('/new_snack', loginCtrl.verifyToken, async (req, res) => {
       snack.thumbURL = snackURL
     } catch (err) {}
     await snackCtrl.save(snack)
+
+    sendPushNotificationToAll('Eba! Saiu o cardápio de hoje!', description)
+
     return res.render('new_snack', {
       successMessage: 'Merenda do dia salva!',
     })

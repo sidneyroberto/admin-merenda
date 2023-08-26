@@ -20,6 +20,7 @@ const SnackModel_1 = require("../models/SnackModel");
 const LoginController_1 = __importDefault(require("../controllers/LoginController"));
 const storage_1 = require("firebase/storage");
 const firebase_1 = require("../config/firebase");
+const PushNotificationMessages_1 = require("../messages/PushNotificationMessages");
 exports.snacksRouter = (0, express_1.Router)();
 const snackCtrl = new SnackController_1.SnackController();
 const loginCtrl = new LoginController_1.default();
@@ -48,6 +49,7 @@ exports.snacksRouter.post('/new_snack', loginCtrl.verifyToken, (req, res) => __a
         }
         catch (err) { }
         yield snackCtrl.save(snack);
+        (0, PushNotificationMessages_1.sendPushNotificationToAll)('Eba! Saiu o cardápio de hoje!', description);
         return res.render('new_snack', {
             successMessage: 'Merenda do dia salva!',
         });

@@ -31,6 +31,7 @@ app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.use(express.static(join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use((req, res, next) => {
   res.locals.session = req.session
   next()
